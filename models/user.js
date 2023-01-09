@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
 
-/*const urlRegExp = /^https?:\/\/[a-z0-9~_\-\.]+\.[a-z]{2,9}([a-z0-9\[\]\#\-\.\_\~\/\?\@\!\$\&\'\(\)\*\+\,\;\:\=]*)?$/i;*/
+const bcrypt = require('bcryptjs');
 const regexEmail = /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i;
 const Unauthoraized = require('../errors/unauthoraized');
 const userSchema = new mongoose.Schema({
