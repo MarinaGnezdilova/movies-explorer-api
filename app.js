@@ -20,7 +20,7 @@ const CenterError = require('./errors/centerError');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
+  windowMs: 100,
   max: 100,
   standardHeaders: true,
   legacyHeaders: false,
@@ -28,10 +28,10 @@ const limiter = rateLimit({
 const regexEmail = /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i;
 app.use('*', cors());
 app.use(helmet());
-app.use(limiter);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(requestLogger);
+app.use(limiter);
 app.get('/crash-test', () => {
   setTimeout(() => {
     throw new Error('Сервер сейчас упадёт');
@@ -57,7 +57,7 @@ app.all((req, res, next) => next(new NotFoundError('Страница не най
 
 app.use(errorLogger);
 app.use(errors());
-app.use((req, res, next) => next(new CenterError('На сервере произошла ошибка')));
+app.use((err, req, res, next) => next(new CenterError('На сервере произошла ошибка')));
 app.listen(3000, () => {
   console.log('App listening on port 3000');
 });
