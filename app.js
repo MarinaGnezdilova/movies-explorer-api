@@ -16,7 +16,6 @@ const rateLimit = require('express-rate-limit');
 const { postUser, login } = require('./controllers/user');
 const auth = require('./middlewares/auth');
 const NotFoundError = require('./errors/not-found-err');
-const CenterError = require('./errors/centerError');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const limiter = rateLimit({
@@ -57,7 +56,13 @@ app.all((req, res, next) => next(new NotFoundError('Страница не най
 
 app.use(errorLogger);
 app.use(errors());
-app.use((err, req, res, next) => next(new CenterError('На сервере произошла ошибка')));
+app.use((err, req, res) => {
+  const DEFAULT_ERROR = 500;
+  const { statusCode } = err;
+  const MSG_DEFAULT = 'Ошибка сервера';
+  const message = statusCode === DEFAULT_ERROR ? MSG_DEFAULT : err.message;
+  res.status(statusCode).send({ message });
+});
 app.listen(3000, () => {
   console.log('App listening on port 3000');
 });
