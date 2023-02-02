@@ -54,14 +54,14 @@ const cardSchema = new mongoose.Schema({
       message: 'Поле "thumbnail" должно быть ссылкой.',
     },
   },
-  owner:{
+  owner: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'user',
     required: true,
   },
-  movieId:{
+  /*movieId: {
     type: String,
     required: true,
-  },
+  },*/
 });
 module.exports = mongoose.model('movie', cardSchema);

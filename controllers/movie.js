@@ -25,7 +25,7 @@ module.exports.postMovie = (req, res, next) => {
     trailerLink: req.body.trailerLink,
     thumbnail: req.body.thumbnail,
     owner: req.user.id,
-    movieId: req.user.id,
+    /*movieId: req.body.id,*/
     nameRU: req.body.nameRU,
     nameEN: req.body.nameEN,
   })

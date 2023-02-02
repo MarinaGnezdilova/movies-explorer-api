@@ -63,6 +63,6 @@ app.use((err, req, res) => {
   const message = statusCode === DEFAULT_ERROR ? MSG_DEFAULT : err.message;
   res.status(statusCode).send({ message });
 });
-app.listen(3000, () => {
+app.listen(3001, () => {
   console.log('App listening on port 3000');
 });

@@ -24,11 +24,11 @@ router.post('/movies', celebrate({
     duration: Joi.number().required(),
     year: Joi.number().required(),
     description: Joi.string().required(),
-    image: Joi.string().required().pattern(regex),
-    trailerLink: Joi.string().required().pattern(regex),
-    thumbnail: Joi.string().required().pattern(regex),
+    image: Joi.string().required()/*.pattern(regex)*/,
+    trailerLink: Joi.string().required()/*.pattern(regex)*/,
+    thumbnail: Joi.string().required()/*.pattern(regex)*/,
     owner: Joi.string().length(24).hex(),
-    movieId: Joi.number().required(),
+    /*movieId: Joi.number().required(),*/
   }),
 }), postMovie);
 router.delete('/movies/:movieId', celebrate({
@@ -39,8 +39,8 @@ router.delete('/movies/:movieId', celebrate({
 router.get('/users/me/', getUserInfo);
 router.patch('/users/me/', celebrate({
   body: Joi.object().keys({
-    name: Joi.string().required().min(2).max(30),
-    email: Joi.string().required().pattern(regexEmail),
+    name: Joi.string().min(2).max(30),
+    email: Joi.string().pattern(regexEmail),
   }),
 }), patchUserProfile);
 module.exports = router;
