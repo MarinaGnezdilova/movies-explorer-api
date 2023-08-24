@@ -1,2 +1,3 @@
-Дипломный проект
-https://api.diplom-gnezdilovam.nomoredomains.club
+#Бек для дипломного проекта
+Доступен на виртуальной машине http://84.252.137.13
+
