@@ -59,9 +59,9 @@ const cardSchema = new mongoose.Schema({
     ref: 'user',
     required: true,
   },
-  /*movieId: {
+  id: {
     type: String,
     required: true,
-  },*/
+  },
 });
 module.exports = mongoose.model('movie', cardSchema);

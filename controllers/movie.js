@@ -25,7 +25,7 @@ module.exports.postMovie = (req, res, next) => {
     trailerLink: req.body.trailerLink,
     thumbnail: req.body.thumbnail,
     owner: req.user.id,
-    /*movieId: req.body.id,*/
+    id: req.body.id,
     nameRU: req.body.nameRU,
     nameEN: req.body.nameEN,
   })
@@ -41,7 +41,7 @@ module.exports.postMovie = (req, res, next) => {
     });
 };
 module.exports.deleteMovie = (req, res, next) => {
-  Movie.findById(req.params.movieId)
+  Movie.findById(req.params.d)
     .orFail(() => {
       throw new NotFoundError('Фильм по указанному _id не найден.');
     })
@@ -49,7 +49,7 @@ module.exports.deleteMovie = (req, res, next) => {
       if (data.owner.toString() != req.user.id) {
         throw new Forbidden('Удаление фильма невозможно.');
       } else {
-        return Movie.findByIdAndRemove(req.params.movieId).then((movie) => res.send({ data: movie }));
+        return Movie.findByIdAndRemove(req.params.id).then((movie) => res.send({ data: movie }));
       }
     })
     .catch((e) => {

@@ -24,16 +24,16 @@ router.post('/movies', celebrate({
     duration: Joi.number().required(),
     year: Joi.number().required(),
     description: Joi.string().required(),
-    image: Joi.string().required()/*.pattern(regex)*/,
-    trailerLink: Joi.string().required()/*.pattern(regex)*/,
-    thumbnail: Joi.string().required()/*.pattern(regex)*/,
+    image: Joi.string().required().pattern(regex),
+    trailerLink: Joi.string().required().pattern(regex),
+    thumbnail: Joi.string().required().pattern(regex),
     owner: Joi.string().length(24).hex(),
-    /*movieId: Joi.number().required(),*/
+    id: Joi.string().required(),
   }),
 }), postMovie);
-router.delete('/movies/:movieId', celebrate({
+router.delete('/movies/:id', celebrate({
   params: Joi.object().keys({
-    movieId: Joi.string().required().length(24).hex(),
+    id: Joi.string().required(),
   }),
 }), deleteMovie);
 router.get('/users/me/', getUserInfo);

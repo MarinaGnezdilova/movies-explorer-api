@@ -14,7 +14,7 @@ const helmet = require('helmet');
 const cors = require('cors');
 const rateLimit = require('express-rate-limit');
 const { postUser, login } = require('./controllers/user');
-const auth = require('./middlewares/auth');
+const { auth } = require('./middlewares/auth');
 const NotFoundError = require('./errors/not-found-err');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 

@@ -4,7 +4,7 @@ require('dotenv').config();
 
 const { secretKey = 'some-secret-key' } = process.env;
 
-module.exports = (req, res, next) => {
+module.exports.auth = (req, res, next) => {
   const { authorization } = req.headers;
   if (!authorization || !authorization.startsWith('Bearer ')) {
     throw new Unauthoraized('Ошибка автоизации.');
